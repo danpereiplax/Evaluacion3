@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <title>Formulario de Notas</title>
+</head>
+<body>
+    <h1>Formulario de Notas</h1>
+    <form method="POST" action="{{ url_for('procesar_notas') }}">
+        <label for="nota1">Nota 1 (10-70):</label>
+        <input type="number" name="nota1" min="10" max="70" required><br>
+
+        <label for="nota2">Nota 2 (10-70):</label>
+        <input type="number" name="nota2" min="10" max="70" required><br>
+
+        <label for="nota3">Nota 3 (10-70):</label>
+        <input type="number" name="nota3" min="10" max="70" required><br>
+
+        <label for="asistencia">Asistencia (%) (0-100):</label>
+        <input type="number" name="asistencia" min="0" max="100" required><br>
+
+        <button type="submit">Enviar</button>
+
+        {% if promedio is defined %}
+            <p>Estado: {{ "Aprobado" if promedio >= 40 and asistencia >= 75 else "Reprobado" }}</p>
+        {% endif %}
+    </form>
+</body>
+</html>
